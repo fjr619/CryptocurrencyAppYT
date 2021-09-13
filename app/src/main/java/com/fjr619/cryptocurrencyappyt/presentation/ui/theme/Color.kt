@@ -1,4 +1,4 @@
-package com.fjr619.cryptocurrencyappyt.ui.theme
+package com.fjr619.cryptocurrencyappyt.presentation.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
