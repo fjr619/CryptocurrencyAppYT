@@ -16,30 +16,38 @@ import androidx.compose.ui.Alignment.Companion.CenterVertically
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontStyle
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.tooling.preview.PreviewParameter
+import androidx.compose.ui.tooling.preview.PreviewParameterProvider
 import androidx.compose.ui.unit.dp
 import com.fjr619.cryptocurrencyappyt.domain.model.Coin
 
-@Preview
-@Composable
-fun CoinListItemPreview() {
-    CoinListItem(
-        Coin("id", true, "Coin Name asdasdasd asdasd", 1, "Symbol"),
-        onItemClick = {}
-    )
+// @Preview
+// @Composable
+// fun CoinListItemPreview() {
+//     CoinListItem(
+//         Coin("id", true, "Coin Name".repeat(5), 1, "Symbol"),
+//         onItemClick = {}
+//     )
+// }
+
+class CoinListItemProvider: PreviewParameterProvider<Coin> {
+    override val values = sequenceOf(Coin("id", true, "Coin Name".repeat(5), 1, "Symbol"))
 }
 
+@Preview
 @Composable
 fun CoinListItem(
-    coin: Coin,
-    onItemClick: (Coin) -> Unit
+    @PreviewParameter(CoinListItemProvider::class) coin: Coin,
+    onItemClick: (Coin) -> Unit = {}
 ) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
-            .clickable { onItemClick(coin) }
+            // .clickable { onItemClick(coin) }
             .padding(20.dp),
         horizontalArrangement = Arrangement.SpaceBetween
     ) {
@@ -55,6 +63,7 @@ fun CoinListItem(
             text = if (coin.isActive) "active" else "inactive",
             color = if (coin.isActive) Color.Green else Color.Red,
             fontStyle = FontStyle.Italic,
+            fontWeight = FontWeight.Bold,
             textAlign = TextAlign.End,
             style = MaterialTheme.typography.body2,
             modifier = Modifier
