@@ -1,7 +1,6 @@
 package com.fjr619.cryptocurrencyappyt.presentation
 
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.material.MaterialTheme
@@ -14,11 +13,9 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.fjr619.cryptocurrencyappyt.Screen
 import com.fjr619.cryptocurrencyappyt.common.Constants
-import com.fjr619.cryptocurrencyappyt.domain.model.Coin
 import com.fjr619.cryptocurrencyappyt.presentation.coin.detail.CoinDetailScreen
 import com.fjr619.cryptocurrencyappyt.presentation.coin.list.CoinListScreen
 import com.fjr619.cryptocurrencyappyt.presentation.ui.theme.CryptocurrencyAppYTTheme
-import com.google.gson.Gson
 import dagger.hilt.android.AndroidEntryPoint
 
 /**
@@ -50,7 +47,7 @@ class MainActivity : ComponentActivity() {
 
                             //optional to set type, default is String
                             arguments = listOf(
-                                navArgument(Constants.PARAM_COIN_ID){
+                                navArgument(Constants.PARAM_COIN_ID) {
                                     type = NavType.StringType
                                 },
                                 navArgument("coinFromList") {
@@ -61,15 +58,6 @@ class MainActivity : ComponentActivity() {
                                 }
                             )
                         ) {
-                            val bundle = it.arguments
-                            val test = bundle?.getString("coinFromList")
-                            test?.let { json ->
-                                val coin = Gson().fromJson(json, Coin::class.java)
-                                Log.e("TAG", "ini hasil koin $coin")
-                            }
-                            val test2 = bundle?.getString("test2")
-                            Log.e("TAG", "go to detail $test $test2")
-
                             CoinDetailScreen(
                                 it.arguments ?: bundleOf()
                             )
