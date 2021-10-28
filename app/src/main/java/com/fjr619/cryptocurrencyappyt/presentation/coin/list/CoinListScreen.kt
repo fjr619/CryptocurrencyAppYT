@@ -1,5 +1,6 @@
 package com.fjr619.cryptocurrencyappyt.presentation.coin.list
 
+import android.util.Log
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -17,7 +18,9 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.fjr619.cryptocurrencyappyt.Screen
+import com.fjr619.cryptocurrencyappyt.common.Constants
 import com.fjr619.cryptocurrencyappyt.presentation.coin.list.components.CoinListItem
+import com.google.gson.Gson
 
 @Composable
 fun CoinListScreen(
@@ -31,12 +34,21 @@ fun CoinListScreen(
                 CoinListItem(
                     coin = coins,
                     onItemClick = {
-                        navController.navigate(Screen.CoinDetailScreen.route + "/${coins.id}")
+                        val coinToString = Gson().toJson(it)
+                        Log.e("TAG","coinToString $coinToString")
+
+                        val route = Screen.CoinDetailScreen.route
+                            .replace("{${Constants.PARAM_COIN_ID}}", coins.id)
+                            .replace("{coinFromList}",coinToString)
+                            .replace("{test2}", "testtest2")
+                        Log.e("TAG", "route $route")
+
+                        navController.navigate(route)
                     }
                 )
             }
         }
-        if(state.error.isNotBlank()) {
+        if (state.error.isNotBlank()) {
             Text(
                 text = state.error,
                 color = MaterialTheme.colors.error,
@@ -47,7 +59,7 @@ fun CoinListScreen(
                     .align(Alignment.Center)
             )
         }
-        if(state.isLoading) {
+        if (state.isLoading) {
             CircularProgressIndicator(modifier = Modifier.align(Alignment.Center))
         }
     }

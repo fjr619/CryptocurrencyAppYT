@@ -1,5 +1,7 @@
 package com.fjr619.cryptocurrencyappyt.presentation.coin.detail
 
+import android.os.Bundle
+import android.util.Log
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues
@@ -23,13 +25,17 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.core.os.bundleOf
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.fjr619.cryptocurrencyappyt.domain.model.Coin
 import com.fjr619.cryptocurrencyappyt.presentation.coin.detail.components.CoinTag
 import com.fjr619.cryptocurrencyappyt.presentation.coin.detail.components.TeamListItem
 import com.google.accompanist.flowlayout.FlowRow
+import com.google.gson.Gson
 
 @Composable
 fun CoinDetailScreen(
+    bundle: Bundle,
     viewModel: CoinDetailViewModel = hiltViewModel()
 ) {
     val state = viewModel.state.value
@@ -37,6 +43,8 @@ fun CoinDetailScreen(
         modifier = Modifier.fillMaxSize(),
     ) {
         state.coin?.let { coin ->
+            Log.e("TAG","aaaaa")
+
             LazyColumn(
                 modifier = Modifier.fillMaxSize(),
                 contentPadding = PaddingValues(20.dp)
@@ -63,6 +71,18 @@ fun CoinDetailScreen(
                         )
                     }
                     Spacer(modifier = Modifier.height(15.dp))
+
+                    //ngetest ngeload bundle dari previous page yang bentuknya data class
+                    Text(
+                        text = "ini hasil dari bundle halaman sebelumnya ${bundle.getString
+                            ("coinFromList")?.let { json ->
+                            val coin = Gson().fromJson(json, Coin::class.java)
+                            coin.name
+                        }} " +
+                            "${bundle.getString("test2")}",
+                        style = MaterialTheme.typography.body2,
+                        color = Color.Magenta
+                    )
 
                     Text(
                         text = coin.description,
