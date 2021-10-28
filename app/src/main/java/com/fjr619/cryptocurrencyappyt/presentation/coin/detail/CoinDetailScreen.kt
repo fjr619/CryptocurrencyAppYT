@@ -1,8 +1,10 @@
 package com.fjr619.cryptocurrencyappyt.presentation.coin.detail
 
-import android.os.Bundle
+import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -13,6 +15,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.Divider
 import androidx.compose.material.MaterialTheme
@@ -25,12 +28,28 @@ import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.fjr619.cryptocurrencyappyt.domain.model.Coin
 import com.fjr619.cryptocurrencyappyt.presentation.coin.detail.components.CoinTag
 import com.fjr619.cryptocurrencyappyt.presentation.coin.detail.components.TeamListItem
+import com.fjr619.cryptocurrencyappyt.presentation.ui.theme.DarkGray
 import com.google.accompanist.flowlayout.FlowRow
-import com.google.gson.Gson
 
+@Composable
+fun TitleMember(title: String) {
+    Column(
+        modifier = Modifier
+            .fillMaxWidth()
+            .background(color = DarkGray)
+    ) {
+        Text(
+            text = title,
+            style = MaterialTheme.typography.h3
+        )
+
+        Spacer(modifier = Modifier.height(15.dp))
+    }
+}
+
+@ExperimentalFoundationApi
 @Composable
 fun CoinDetailScreen(
     viewModel: CoinDetailViewModel = hiltViewModel()
@@ -70,7 +89,7 @@ fun CoinDetailScreen(
                     //ngetest ngeload bundle dari previous page yang bentuknya data class
                     Text(
                         text = "ini hasil dari bundle halaman sebelumnya ${viewModel
-                            .coinDataFromList?.name}",
+                            .coinDataFromList?.name ?: ""}",
                         style = MaterialTheme.typography.body2,
                         color = Color.Magenta
                     )
@@ -100,13 +119,58 @@ fun CoinDetailScreen(
                     }
 
                     Spacer(modifier = Modifier.height(15.dp))
+                }
 
-                    Text(
-                        text = "Team members",
-                        style = MaterialTheme.typography.h3
+                stickyHeader {
+                    TitleMember("Team Members")
+                }
+
+                items(coin.team) { teamMember ->
+                    TeamListItem(
+                        teamMember = teamMember,
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(10.dp)
                     )
+                    Divider()
+                }
 
-                    Spacer(modifier = Modifier.height(15.dp))
+                itemsIndexed(coin.team) { index, teamMember ->
+                    TeamListItem(
+                        teamMember = teamMember,
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(10.dp)
+                    )
+                    Divider()
+
+                    if (index == coin.team.size-1) {
+                        Spacer(modifier = Modifier.height(15.dp))
+                    }
+                }
+
+                stickyHeader {
+                    TitleMember("Team Members 2")
+                }
+
+                items(coin.team) { teamMember ->
+                    TeamListItem(
+                        teamMember = teamMember,
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(10.dp)
+                    )
+                    Divider()
+                }
+
+                items(coin.team) { teamMember ->
+                    TeamListItem(
+                        teamMember = teamMember,
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(10.dp)
+                    )
+                    Divider()
                 }
 
                 items(coin.team) { teamMember ->
