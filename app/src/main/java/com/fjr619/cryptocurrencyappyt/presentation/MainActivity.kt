@@ -58,9 +58,7 @@ class MainActivity : ComponentActivity() {
                                 }
                             )
                         ) {
-                            CoinDetailScreen(
-                                it.arguments ?: bundleOf()
-                            )
+                            CoinDetailScreen()
                         }
                     }
                 }

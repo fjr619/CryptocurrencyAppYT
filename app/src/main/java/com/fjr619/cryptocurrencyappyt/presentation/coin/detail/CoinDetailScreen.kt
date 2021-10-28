@@ -33,7 +33,6 @@ import com.google.gson.Gson
 
 @Composable
 fun CoinDetailScreen(
-    bundle: Bundle,
     viewModel: CoinDetailViewModel = hiltViewModel()
 ) {
     val state = viewModel.state.value
@@ -70,14 +69,8 @@ fun CoinDetailScreen(
 
                     //ngetest ngeload bundle dari previous page yang bentuknya data class
                     Text(
-                        text = "ini hasil dari bundle halaman sebelumnya ${
-                            bundle.getString
-                                ("coinFromList")?.let { json ->
-                                val coin = Gson().fromJson(json, Coin::class.java)
-                                coin.name
-                            }
-                        } " +
-                            "${bundle.getString("test2")}",
+                        text = "ini hasil dari bundle halaman sebelumnya ${viewModel
+                            .coinDataFromList?.name}",
                         style = MaterialTheme.typography.body2,
                         color = Color.Magenta
                     )

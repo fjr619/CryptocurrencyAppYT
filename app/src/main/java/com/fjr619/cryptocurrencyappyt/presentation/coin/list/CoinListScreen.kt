@@ -18,7 +18,6 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.fjr619.cryptocurrencyappyt.Screen
-import com.fjr619.cryptocurrencyappyt.common.Constants
 import com.fjr619.cryptocurrencyappyt.presentation.coin.list.components.CoinListItem
 import com.google.gson.Gson
 
@@ -35,12 +34,10 @@ fun CoinListScreen(
                     coin = coins,
                     onItemClick = {
                         val coinToString = Gson().toJson(it)
-                        Log.e("TAG","coinToString $coinToString")
-
-                        val route = Screen.CoinDetailScreen.route
-                            .replace("{${Constants.PARAM_COIN_ID}}", coins.id)
-                            .replace("{coinFromList}",coinToString)
-                            .replace("{test2}", "testtest2")
+                        val route = Screen.CoinDetailScreen.param(
+                            coinId = coins.id,
+                            coinFromList = coinToString
+                        )
                         Log.e("TAG", "route $route")
 
                         navController.navigate(route)
