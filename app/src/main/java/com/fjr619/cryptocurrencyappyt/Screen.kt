@@ -10,7 +10,7 @@ sealed class Screen(val route: String) {
         fun param(coinId: String, coinFromList: String = "", test2: String = ""): String {
             return route
                 .replace("{${Constants.PARAM_COIN_ID}}", coinId)
-                // .replace("{coinFromList}", coinFromList)
+                .replace("{coinFromList}", coinFromList)
                 .replace("{test2}", test2)
         }
     }

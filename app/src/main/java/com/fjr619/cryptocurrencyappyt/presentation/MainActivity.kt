@@ -3,6 +3,7 @@ package com.fjr619.cryptocurrencyappyt.presentation
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.core.os.bundleOf
@@ -25,6 +26,7 @@ import dagger.hilt.android.AndroidEntryPoint
  * https://stackoverflow.com/a/65619560
  */
 
+@ExperimentalFoundationApi
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
