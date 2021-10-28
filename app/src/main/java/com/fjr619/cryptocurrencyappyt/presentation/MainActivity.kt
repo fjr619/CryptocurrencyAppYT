@@ -33,7 +33,6 @@ class MainActivity : ComponentActivity() {
         setContent {
             CryptocurrencyAppYTTheme {
                 Surface(color = MaterialTheme.colors.background) {
-                    // testRemember()
                     val navController = rememberNavController()
                     NavHost(
                         navController = navController,
