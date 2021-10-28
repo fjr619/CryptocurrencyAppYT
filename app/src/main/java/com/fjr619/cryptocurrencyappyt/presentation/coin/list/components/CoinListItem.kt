@@ -11,7 +11,6 @@ import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Alignment.Companion.CenterVertically
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -34,7 +33,7 @@ import com.fjr619.cryptocurrencyappyt.domain.model.Coin
 //     )
 // }
 
-class CoinListItemProvider: PreviewParameterProvider<Coin> {
+class CoinListItemProvider : PreviewParameterProvider<Coin> {
     override val values = sequenceOf(Coin("id", true, "Coin Name".repeat(5), 1, "Symbol"))
 }
 
@@ -49,7 +48,8 @@ fun CoinListItem(
             .fillMaxWidth()
             .clickable { onItemClick(coin) }
             .padding(20.dp),
-        horizontalArrangement = Arrangement.SpaceBetween
+        horizontalArrangement = Arrangement.SpaceBetween,
+        verticalAlignment = CenterVertically
     ) {
         Text(
             text = "${coin.rank}. ${coin.name} (${coin.symbol})",
@@ -67,7 +67,6 @@ fun CoinListItem(
             textAlign = TextAlign.End,
             style = MaterialTheme.typography.body2,
             modifier = Modifier
-                .align(CenterVertically)
                 .wrapContentWidth()
         )
     }
