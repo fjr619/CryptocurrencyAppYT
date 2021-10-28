@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.CircularProgressIndicator
@@ -48,17 +49,17 @@ fun CoinDetailScreen(
                         Text(
                             text = "${coin.rank}. ${coin.name} (${coin.symbol})",
                             style = MaterialTheme.typography.h2,
-                            modifier = Modifier.weight(8f)
+                            modifier = Modifier.weight(1f)
                         )
+
+                        Spacer(modifier = Modifier.width(16.dp))
 
                         Text(
                             text = if (coin.isActive) "active" else "inactive",
                             color = if (coin.isActive) Color.Green else Color.Red,
                             fontStyle = FontStyle.Italic,
                             textAlign = TextAlign.End,
-                            modifier = Modifier
-                                .align(Alignment.CenterVertically)
-                                .weight(2f)
+                            modifier = Modifier.align(Alignment.CenterVertically)
                         )
                     }
                     Spacer(modifier = Modifier.height(15.dp))
