@@ -121,66 +121,71 @@ fun CoinDetailScreen(
                     Spacer(modifier = Modifier.height(15.dp))
                 }
 
-                stickyHeader {
-                    TitleMember("Team Members")
-                }
+                if (coin.team.isNotEmpty()){
+                    stickyHeader {
+                        TitleMember("Team Members")
+                    }
 
-                items(coin.team) { teamMember ->
-                    TeamListItem(
-                        teamMember = teamMember,
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(10.dp)
-                    )
-                    Divider()
-                }
+                    items(coin.team) { teamMember ->
+                        TeamListItem(
+                            teamMember = teamMember,
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(10.dp)
+                        )
+                        Divider()
+                    }
 
-                itemsIndexed(coin.team) { index, teamMember ->
-                    TeamListItem(
-                        teamMember = teamMember,
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(10.dp)
-                    )
-                    Divider()
+                    itemsIndexed(coin.team) { index, teamMember ->
+                        TeamListItem(
+                            teamMember = teamMember,
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(10.dp)
+                        )
+                        Divider()
 
-                    if (index == coin.team.size-1) {
-                        Spacer(modifier = Modifier.height(15.dp))
+                        if (index == coin.team.size-1) {
+                            Spacer(modifier = Modifier.height(15.dp))
+                        }
                     }
                 }
 
-                stickyHeader {
-                    TitleMember("Team Members 2")
-                }
 
-                items(coin.team) { teamMember ->
-                    TeamListItem(
-                        teamMember = teamMember,
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(10.dp)
-                    )
-                    Divider()
-                }
+                if (coin.team.isNotEmpty()){
+                    stickyHeader {
+                        TitleMember("Team Members 2")
+                    }
 
-                items(coin.team) { teamMember ->
-                    TeamListItem(
-                        teamMember = teamMember,
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(10.dp)
-                    )
-                    Divider()
-                }
+                    items(coin.team) { teamMember ->
+                        TeamListItem(
+                            teamMember = teamMember,
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(10.dp)
+                        )
+                        Divider()
+                    }
 
-                items(coin.team) { teamMember ->
-                    TeamListItem(
-                        teamMember = teamMember,
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(10.dp)
-                    )
-                    Divider()
+                    itemsIndexed(coin.team) { index, teamMember ->
+                        TeamListItem(
+                            teamMember = teamMember,
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(10.dp)
+                        )
+                        Divider()
+                    }
+
+                    itemsIndexed(coin.team) { index, teamMember ->
+                        TeamListItem(
+                            teamMember = teamMember,
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(10.dp)
+                        )
+                        Divider()
+                    }
                 }
             }
         }

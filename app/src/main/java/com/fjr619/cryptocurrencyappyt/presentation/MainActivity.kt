@@ -6,7 +6,6 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
-import androidx.core.os.bundleOf
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -34,6 +33,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             CryptocurrencyAppYTTheme {
                 Surface(color = MaterialTheme.colors.background) {
+                    // testRemember()
                     val navController = rememberNavController()
                     NavHost(
                         navController = navController,
