@@ -16,6 +16,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
+import com.fjr619.cryptocurrencyappyt.Screen
 import com.fjr619.cryptocurrencyappyt.presentation.coin.list.components.CoinListItem
 
 @Composable
@@ -30,7 +31,7 @@ fun CoinListScreen(
                 CoinListItem(
                     coin = coins,
                     onItemClick = {
-                        // navController.navigate(Screen.CoinDetailScreen.route + "/${coin.id}")
+                        navController.navigate(Screen.CoinDetailScreen.route + "/${coins.id}")
                     }
                 )
             }

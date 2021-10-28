@@ -46,7 +46,7 @@ data class CoinDetailDto(
     @SerializedName("tags")
     val tags: List<Tag>,
     @SerializedName("team")
-    val team: List<TeamMember>,
+    val team: List<TeamMember>?,
     @SerializedName("type")
     val type: String,
     @SerializedName("whitepaper")
@@ -61,5 +61,5 @@ fun CoinDetailDto.toCoinDetail(): CoinDetail = CoinDetail(
         rank = rank,
         isActive = isActive,
         tags = tags.map { it.name },
-        team = team
+        team = team ?: listOf()
     )

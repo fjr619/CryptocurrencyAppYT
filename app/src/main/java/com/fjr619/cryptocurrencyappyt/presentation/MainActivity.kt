@@ -9,6 +9,8 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.fjr619.cryptocurrencyappyt.Screen
+import com.fjr619.cryptocurrencyappyt.common.Constants
+import com.fjr619.cryptocurrencyappyt.presentation.coin.detail.CoinDetailScreen
 import com.fjr619.cryptocurrencyappyt.presentation.coin.list.CoinListScreen
 import com.fjr619.cryptocurrencyappyt.presentation.ui.theme.CryptocurrencyAppYTTheme
 import dagger.hilt.android.AndroidEntryPoint
@@ -30,11 +32,11 @@ class MainActivity : ComponentActivity() {
                         ) {
                             CoinListScreen(navController)
                         }
-                        // composable(
-                        //     route = Screen.CoinDetailScreen.route + "/{coinId}"
-                        // ) {
-                        //     CoinDetailScreen()
-                        // }
+                        composable(
+                            route = Screen.CoinDetailScreen.route + "/{${Constants.PARAM_COIN_ID}}"
+                        ) {
+                            CoinDetailScreen()
+                        }
                     }
                 }
             }
