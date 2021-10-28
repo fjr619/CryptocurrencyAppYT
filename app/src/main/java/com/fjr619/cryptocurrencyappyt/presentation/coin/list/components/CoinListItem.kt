@@ -38,7 +38,7 @@ class CoinListItemProvider: PreviewParameterProvider<Coin> {
     override val values = sequenceOf(Coin("id", true, "Coin Name".repeat(5), 1, "Symbol"))
 }
 
-@Preview
+@Preview(showBackground = true)
 @Composable
 fun CoinListItem(
     @PreviewParameter(CoinListItemProvider::class) coin: Coin,
@@ -47,7 +47,7 @@ fun CoinListItem(
     Row(
         modifier = Modifier
             .fillMaxWidth()
-            // .clickable { onItemClick(coin) }
+            .clickable { onItemClick(coin) }
             .padding(20.dp),
         horizontalArrangement = Arrangement.SpaceBetween
     ) {
@@ -61,7 +61,7 @@ fun CoinListItem(
         Spacer(modifier = Modifier.width(16.dp))
         Text(
             text = if (coin.isActive) "active" else "inactive",
-            color = if (coin.isActive) Color.Green else Color.Red,
+            color = if (coin.isActive) MaterialTheme.colors.primary else Color.Red,
             fontStyle = FontStyle.Italic,
             fontWeight = FontWeight.Bold,
             textAlign = TextAlign.End,
