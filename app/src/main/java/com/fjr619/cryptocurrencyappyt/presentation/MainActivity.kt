@@ -1,6 +1,7 @@
 package com.fjr619.cryptocurrencyappyt.presentation
 
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.ExperimentalFoundationApi
@@ -43,6 +44,7 @@ class MainActivity : ComponentActivity() {
                         ) {
                             CoinListScreen(navController)
                         }
+
                         composable(
                             route = Screen.CoinDetailScreen.route,
 
@@ -59,6 +61,12 @@ class MainActivity : ComponentActivity() {
                                 }
                             )
                         ) {
+                            //ngetes dengan manggunakan backstackentry, ketika list ada kirim
+                            // test, di detail bisa terima hasil dari test
+                            // val test = navController.previousBackStackEntry?.savedStateHandle
+                            //     ?.get<String>("test")
+                            // Log.e("TAG","data test $test")
+
                             CoinDetailScreen()
                         }
                     }

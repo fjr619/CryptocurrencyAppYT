@@ -21,6 +21,7 @@ import androidx.compose.material.Divider
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -32,6 +33,8 @@ import com.fjr619.cryptocurrencyappyt.presentation.coin.detail.components.CoinTa
 import com.fjr619.cryptocurrencyappyt.presentation.coin.detail.components.TeamListItem
 import com.fjr619.cryptocurrencyappyt.presentation.ui.theme.DarkGray
 import com.google.accompanist.flowlayout.FlowRow
+import androidx.compose.runtime.setValue
+import androidx.compose.runtime.getValue
 
 @Composable
 fun TitleMember(title: String) {
@@ -54,7 +57,9 @@ fun TitleMember(title: String) {
 fun CoinDetailScreen(
     viewModel: CoinDetailViewModel = hiltViewModel()
 ) {
-    val state = viewModel.state.value
+    val state by remember {
+        viewModel.state
+    }
     Box(
         modifier = Modifier.fillMaxSize(),
     ) {
@@ -86,7 +91,8 @@ fun CoinDetailScreen(
                     }
                     Spacer(modifier = Modifier.height(15.dp))
 
-                    //ngetest ngeload bundle dari previous page yang bentuknya data class
+                    //ngetest ngeload bundle dari previous page yang bentuknya data class dengan
+                    // masukin ke optional parameter
                     Text(
                         text = "ini hasil dari bundle halaman sebelumnya ${viewModel
                             .coinDataFromList?.name ?: ""}",
